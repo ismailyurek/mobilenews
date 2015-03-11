@@ -25,7 +25,7 @@ angular.module('starter.controllers', [])
       quality: 75,
       targetWidth: 320,
       targetHeight: 320,
-      saveToPhotoAlbum: false
+      saveToPhotoAlbum: true
     });
   }
 })
