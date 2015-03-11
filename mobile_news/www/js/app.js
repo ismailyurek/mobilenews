@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -30,7 +30,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
@@ -66,6 +66,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+  
+  .state('tab.camera', {
+      url: '/camera',
+      views: {
+        'tab-camera': {
+          templateUrl: 'templates/tab-camera.html',
+          controller: 'CameraCtrl'
+        }
+      }
+    })
 
   .state('tab.account', {
     url: '/account',
@@ -79,5 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
+
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 
 });
